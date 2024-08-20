@@ -1,9 +1,10 @@
-from data_visualisation import show_graph
-import pandas as pd
+from algorithm.algo import trend_recognition
+
+from pandas import read_csv
 
 def main():
-    return
+    print(trend_recognition(read_csv('data/data_test.csv')))
+    return 
 
-if __name__ == "main":
-    show_graph(pd.read_csv('data/data_1.csv'))
+if __name__ == "__main__":    
     main()
