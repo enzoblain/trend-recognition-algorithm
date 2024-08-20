@@ -1,0 +1,1 @@
+# trend_recognition_algorithm
