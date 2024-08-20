@@ -1,6 +1,10 @@
 # Trend Recognition Algorithm
 This project is a Python-based trend recognition algorithm designed to analyze datasets and identify significant patterns. Using advanced data analysis techniques, the algorithm helps in detecting emerging trends that can be applied in finance.
 
+## Documentation
+
+For a detailed explanation of how the algorithm works, including data validation, missing data handling, and trend analysis, please refer to the `explanation.md` file located in the root directory of this project. This document provides a step-by-step guide to understanding the functionality and purpose of the `trend_recognition` function.
+
 ## Project Structure
 - `main.py`: The main entry point of the trend recognition algorithm. This script coordinates the different components to identify and analyze trends in the input data.
 - `requirements.txt`: A file listing the necessary Python packages required to run the algorithm.
