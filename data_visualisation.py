@@ -8,7 +8,7 @@ def show_graph(df):
         
     for trend in TRENDS: 
         color = 'green' if trend['type'] == 'Bullish' else 'red'
-        
+
         fig.add_shape(
             type="rect",
             x0=trend['start'],
