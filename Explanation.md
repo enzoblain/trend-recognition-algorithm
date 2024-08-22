@@ -1,41 +1,58 @@
-# Explanation of the Trend Recognition Algorithm
+# Trend Recognition Algorithm
 
-The `Trend Recognition Algorithm` is designed to validate and process financial data, ensuring that it meets necessary criteria before analysis. It cleans and organizes the data, addressing any issues such as missing or incomplete information. Once the data is validated, the algorithm analyzes it to identify and separate each trend, classifying the data into distinct Bullish or Bearish trends. This prepares the data for more detailed analysis or further use in financial decision-making.
+The Trend Recognition Algorithm processes financial data to identify market trends, classifying each time period as Bullish or Bearish. The process is divided into two main phases: **Data Preparation** and **Algorithm Workflow**.
 
-## 1. Data Input Validation
+## 1. Data Preparation
 
-- **Objective**: Ensure that the input data is of the correct type.
+### 1.1. Input Validation
+- **Objective**: Ensure the input data is suitable for analysis.
 - **Process**:
-  - The function checks if the input is a dictionary or a Pandas DataFrame.
+  - The algorithm checks if the input is either a dictionary or a Pandas DataFrame.
   - If the input is a dictionary, it is converted into a DataFrame.
-  - If the input is not a DataFrame, the function raises an error.
+  - If the input is neither a dictionary nor a DataFrame, an error is raised.
 
-## 2. Required Columns Verification
-
-- **Objective**: Confirm that the DataFrame contains all necessary columns for analysis.
+### 1.2. Column Verification
+- **Objective**: Confirm the presence of all necessary columns in the DataFrame.
 - **Process**:
-  - The function checks for the presence of essential columns: `datetime`, `high`, `open`, `close`, and `low`.
-  - If any of these columns are missing, an error is raised to prevent further processing.
+  - The algorithm checks for five essential columns: `datetime`, `high`, `open`, `close`, and `low`.
+  - If any of these columns are missing, an error is raised, halting further processing.
 
-## 3. Managing Missing Data
-
-- **Objective**: Handle missing data within the DataFrame to maintain analysis accuracy.
+### 1.3. Handling Missing Data
+- **Objective**: Ensure the data is complete and ready for analysis.
 - **Process**:
-  - The function calculates the proportion of rows with missing data.
-  - If the proportion exceeds a specified threshold (20%), a warning is printed.
-  - Rows with missing data are removed to ensure the DataFrame is clean and reliable for trend analysis.
+  - The algorithm calculates the proportion of missing data in the DataFrame.
+  - If the proportion of missing data exceeds 20%, a warning is issued to indicate potential issues with the analysis.
+  - Rows with missing data are dropped to ensure a clean dataset.
 
-## 4. Trend Classification
-
-- **Objective**: Classify each candle in the DataFrame as either Bullish or Bearish.
+### 1.4. Initial Trend Classification
+- **Objective**: Categorize each time period as Bullish or Bearish.
 - **Process**:
-  - For each row in the DataFrame, the function compares the `open` and `close` prices.
-  - If the `close` price is higher than the `open`, the candle is classified as Bullish.
-  - Conversely, if the `close` price is lower, the candle is classified as Bearish.
+  - For each row in the DataFrame, the algorithm compares the `open` and `close` prices.
+  - If the `close` price is higher than the `open`, the period is classified as Bullish.
+  - If the `close` price is lower than the `open`, it is classified as Bearish.
 
-## 5. Final Data Preparation
+## 2. Algorithm Workflow
 
-- **Objective**: Ensure the DataFrame is ready for further analysis or use.
+### 2.1. Initialize First Trend
+- **Objective**: Set up the initial trend based on the first data point.
 - **Process**:
-  - After processing, the DataFrame is cleaned and indexed correctly.
-  - The function ensures that the DataFrame contains only relevant data, with trends identified and classified for each candle.
+  - The first time period (candle) is used to define the initial trend.
+  - The algorithm records the trend type (Bullish or Bearish), high and low prices, retest level, and start time.
+
+### 2.2. Identify Sub-Trends
+- **Objective**: Track changes within the main trend to detect sub-trends.
+- **Process**:
+  - As the algorithm iterates through the data, it monitors for deviations within the main trend.
+  - If a sub-trend begins, it records the new high, low, and retest levels for that period.
+
+### 2.3. Trend Confirmation and Transition
+- **Objective**: Confirm trend continuation or transition to a new trend.
+- **Process**:
+  - The algorithm checks if the current trend continues or if a new trend emerges based on price movements and thresholds.
+  - If a new trend is identified, the current trend is closed and saved, and the new trend is initialized.
+
+### 2.4. Finalize Trends
+- **Objective**: Conclude the trend analysis.
+- **Process**:
+  - After processing all data points, the algorithm finalizes any ongoing trends.
+  - The identified trends are then stored for further analysis or use.
